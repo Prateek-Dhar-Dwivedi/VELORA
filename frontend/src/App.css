@@ -1,0 +1,28 @@
+.App{
+min-height:100vh;
+background:var(--bg);
+color:var(--text);
+transition:.3s ease;
+}
+
+body{
+margin:0;
+padding:0;
+background:var(--bg);
+color:var(--text);
+overflow-x:hidden;
+transition:.3s ease;
+}
+
+#root{
+min-height:100vh;
+}
+
+a{
+text-decoration:none;
+color:inherit;
+}
+
+button{
+font-family:inherit;
+}

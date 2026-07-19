@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+:root{
+--bg:#f8fafc;
+--text:#111827;
+--hero1:#f8fbff;
+--hero2:#eef4ff;
+--card:#ffffff;
+--secondary:#64748b;
+--border:rgba(0,0,0,.08);
+--primary:#2563eb;
+--primary-hover:#1d4ed8;
+--shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+body.dark{
+--bg:#0f172a;
+--text:#ffffff;
+--hero1:#0f172a;
+--hero2:#1e293b;
+--card:#1e293b;
+--secondary:#94a3b8;
+--border:rgba(255,255,255,.1);
+--primary:#3b82f6;
+--primary-hover:#60a5fa;
+--shadow:0 10px 30px rgba(0,0,0,.3);
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Inter",sans-serif;
+}
+
+body{
+background:var(--bg);
+color:var(--text);
+transition:.3s ease;
+overflow-x:hidden;
+}
+
+h1,h2,h3{
+font-family:"Space Grotesk",sans-serif;
+color:var(--text);
+}
+
+a{
+text-decoration:none;
+color:inherit;
+}
+
+button{
+font-family:inherit;
+}
