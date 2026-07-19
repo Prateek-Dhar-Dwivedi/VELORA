@@ -1,93 +1,184 @@
-# 🚀 Velora - AI Powered Job Verification Platform
+# 🚀 Velora  
+## AI-Powered Job Verification & Recommendation Platform
 
-![Velora Logo](frontend/src/velora.png)
+<p align="center">
+  <img src="frontend/src/velora.png" width="180" alt="Velora Logo"/>
+</p>
 
-Velora is an AI-powered job verification and recommendation platform that helps users discover trusted job opportunities, manage their career profile, upload resumes, and get personalized job recommendations.
+<p align="center">
+  <b>Find trusted jobs. Match your skills. Build your career with AI.</b>
+</p>
 
-The main goal of Velora is to reduce fake job listings and provide a smarter, safer, and efficient job search experience.
+<p align="center">
+  <img src="https://img.shields.io/badge/Frontend-React.js-61DAFB?style=for-the-badge&logo=react"/>
+  <img src="https://img.shields.io/badge/Backend-Node.js-339933?style=for-the-badge&logo=node.js"/>
+  <img src="https://img.shields.io/badge/Database-MongoDB-47A248?style=for-the-badge&logo=mongodb"/>
+  <img src="https://img.shields.io/badge/Deployment-Vercel%20%7C%20Render-black?style=for-the-badge"/>
+</p>
+
+---
+
+# 📌 Overview
+
+**Velora** is an AI-powered job verification and recommendation platform designed to help job seekers discover reliable opportunities, manage their career profiles, and receive personalized job recommendations.
+
+The platform focuses on solving major problems in online job searching:
+
+- Fake or misleading job postings
+- Difficulty finding relevant opportunities
+- Lack of personalized recommendations
+- Inefficient resume-based searching
+
+Velora combines modern web technologies with AI-powered matching to create a smarter job discovery experience.
+
+---
+
+# 🎯 Problem Statement
+
+Finding the right job is becoming increasingly difficult due to:
+
+- Thousands of irrelevant job listings
+- Fake recruitment scams
+- Lack of personalized suggestions
+- Poor matching between candidate skills and job requirements
+
+Candidates often spend hours searching for jobs that do not match their profile.
+
+---
+
+# 💡 Solution
+
+Velora provides:
+
+✅ Verified job discovery  
+✅ Resume-based recommendations  
+✅ AI-powered matching  
+✅ Secure authentication  
+✅ Personalized dashboard  
+✅ Career-focused user experience  
 
 ---
 
 # ✨ Features
 
-## 🔐 Authentication
+## 🔐 Authentication System
 
-- User registration and login
-- JWT-based authentication
+- User registration
+- Secure login system
+- JWT authentication
 - Google authentication
-- Secure password encryption
-- Protected user routes
+- Password encryption using bcrypt
+- Protected routes
 
 ---
 
-## 💼 Job Management
+## 💼 Job Discovery
 
-- Browse job opportunities
-- Search jobs
-- View job details
-- Save jobs
+- Browse available jobs
+- Search job opportunities
+- View detailed job information
+- Save important jobs
 - Manage saved jobs
-- Personalized job dashboard
 
 ---
 
 ## 🤖 AI Job Recommendation
 
-- Resume-based job matching
-- Skill-based recommendations
-- AI-powered career assistance
-- Smart job suggestions
+Velora intelligently recommends jobs based on:
+
+- Resume information
+- User skills
+- Job requirements
+- Candidate profile
+
+Features:
+
+- Resume-based matching
+- Smart recommendations
+- Career assistance
 
 ---
 
 ## 📄 Resume Management
 
-- Upload resume
-- Store resume information
-- Analyze candidate skills
-- Recommend suitable jobs
+Users can:
+
+- Upload resumes
+- Store career information
+- Analyze skills
+- Receive suitable job suggestions
 
 ---
 
-## 📊 User Dashboard
+## 👤 User Dashboard
 
-- User profile management
-- Saved jobs section
+Personalized dashboard containing:
+
+- User profile
+- Saved jobs
 - Recommended jobs
 - Career information
 
 ---
 
-# 🛠️ Tech Stack
+# 🏗️ System Architecture
+
+
+```
+                 User
+                  |
+                  |
+              React Frontend
+                  |
+                  |
+              REST API
+                  |
+          Node.js + Express
+                  |
+        ---------------------
+        |                   |
+    MongoDB             AI Engine
+        |                   |
+    User Data        Job Recommendation
+```
+
+
+---
+
+# 🛠️ Technology Stack
 
 ## Frontend
 
-- React.js
-- React Router DOM
-- Axios
-- CSS3
-- React Icons
+| Technology | Purpose |
+|---|---|
+| React.js | User Interface |
+| React Router | Navigation |
+| Axios | API Communication |
+| CSS3 | Styling |
+| React Icons | UI Icons |
+
+---
 
 ## Backend
 
-- Node.js
-- Express.js
-- MongoDB
-- Mongoose
-- JWT Authentication
-- REST API
+| Technology | Purpose |
+|---|---|
+| Node.js | Runtime Environment |
+| Express.js | Backend Framework |
+| MongoDB | Database |
+| Mongoose | Database Modeling |
+| JWT | Authentication |
+| bcrypt | Password Security |
 
-## AI & Services
+---
 
-- AI Recommendation System
-- Google OAuth
-- Resume Processing
+## AI & External Services
 
-## Deployment
-
-- Frontend: Vercel
-- Backend: Render
-- Database: MongoDB Atlas
+| Technology | Purpose |
+|---|---|
+| AI Recommendation System | Job Matching |
+| Google OAuth | Authentication |
+| Resume Processing | Candidate Analysis |
 
 ---
 
@@ -103,6 +194,7 @@ Velora
 │   │   ├── components
 │   │   ├── pages
 │   │   ├── assets
+│   │   ├── services
 │   │   └── App.js
 │   │
 │   └── package.json
@@ -122,7 +214,7 @@ Velora
 
 ---
 
-# ⚙️ Installation & Setup
+# ⚙️ Installation Guide
 
 ## Clone Repository
 
@@ -136,31 +228,21 @@ cd velora
 
 # Frontend Setup
 
-Navigate to frontend folder:
-
 ```bash
 cd frontend
-```
 
-Install dependencies:
-
-```bash
 npm install
+
+npm start
 ```
 
-Create `.env` file:
+Create `.env`:
 
 ```env
 REACT_APP_API_URL=your_backend_url
 ```
 
-Run frontend:
-
-```bash
-npm start
-```
-
-Frontend runs on:
+Frontend runs:
 
 ```
 http://localhost:3000
@@ -170,37 +252,27 @@ http://localhost:3000
 
 # Backend Setup
 
-Navigate to backend folder:
-
 ```bash
 cd backend
-```
 
-Install dependencies:
-
-```bash
 npm install
+
+npm start
 ```
 
-Create `.env` file:
+Create `.env`:
 
 ```env
 PORT=5000
 
-MONGO_URI=your_mongodb_connection_string
+MONGO_URI=your_mongodb_connection
 
 JWT_SECRET=your_secret_key
 
 GOOGLE_CLIENT_ID=your_google_client_id
 ```
 
-Run backend:
-
-```bash
-npm start
-```
-
-Backend runs on:
+Backend runs:
 
 ```
 http://localhost:5000
@@ -208,90 +280,36 @@ http://localhost:5000
 
 ---
 
-# 🔑 API Documentation
+# 🔌 API Documentation
 
-## Authentication APIs
+## Authentication
 
-### Register User
-
-```
-POST /api/auth/register
-```
-
-Request:
-
-```json
-{
- "name":"User Name",
- "email":"user@gmail.com",
- "password":"password"
-}
-```
+| Method | Endpoint | Description |
+|---|---|---|
+| POST | `/api/auth/register` | Create account |
+| POST | `/api/auth/login` | Login user |
+| POST | `/api/auth/google` | Google authentication |
 
 ---
 
-### Login User
+## Jobs
 
-```
-POST /api/auth/login
-```
-
-Request:
-
-```json
-{
- "email":"user@gmail.com",
- "password":"password"
-}
-```
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/api/jobs` | Get available jobs |
+| POST | `/api/save` | Save a job |
 
 ---
 
-### Google Login
+## Resume
 
-```
-POST /api/auth/google
-```
-
-Request:
-
-```json
-{
- "credential":"google_token"
-}
-```
+| Method | Endpoint | Description |
+|---|---|---|
+| POST | `/api/upload` | Upload resume |
 
 ---
 
-# 💼 Job APIs
-
-## Get Jobs
-
-```
-GET /api/jobs
-```
-
----
-
-## Save Job
-
-```
-POST /api/save
-```
-
----
-
-# 📄 Resume APIs
-
-## Upload Resume
-
-```
-POST /api/upload
-```
-
----
-
-# 🌐 Deployment
+# 🌍 Deployment
 
 ## Frontend
 
@@ -305,91 +323,114 @@ https://velora-ten-puce.vercel.app
 https://velora-nv7w.onrender.com
 ```
 
+## Database
+
+```
+MongoDB Atlas
+```
+
 ---
 
 # 🔒 Security Features
 
-- Password hashing using bcrypt
-- JWT token authentication
-- Protected API routes
-- Secure Google login
+Velora implements:
+
+- JWT authentication
+- Password hashing
+- Secure API routes
 - Environment variable protection
+- Google identity verification
 - Database security
 
 ---
 
-# 🚀 Future Improvements
+# 📸 Screenshots
 
-- AI resume scoring
-- Company verification system
-- Real-time job alerts
-- Interview preparation assistant
-- Skill gap analysis
-- AI career mentor
-- Advanced job fraud detection
+Add screenshots here:
+
+```
+/screenshots
+
+├── home.png
+├── dashboard.png
+├── jobs.png
+├── profile.png
+```
 
 ---
 
-# 🎯 Project Objective
+# 🚀 Future Roadmap
 
-Velora aims to create a reliable job searching ecosystem by:
+## Phase 1
 
+✔ Job platform  
+✔ Authentication  
+✔ Dashboard  
+✔ Resume upload  
+
+
+## Phase 2
+
+- Advanced AI recommendations
+- Resume scoring
+- Skill gap detection
+- Interview preparation assistant
+
+
+## Phase 3
+
+- Company verification system
+- Real-time job alerts
+- AI career mentor
+- Fraud job detection
+
+---
+
+# 🎯 Project Goals
+
+Velora aims to build a safer and smarter employment ecosystem by:
+
+- Connecting candidates with suitable jobs
 - Reducing fake job opportunities
-- Helping candidates find relevant jobs
-- Providing AI-based recommendations
-- Improving career decisions
+- Improving hiring efficiency
+- Providing AI-driven career guidance
 
 ---
 
 # 👨‍💻 Developer
 
-Developed using MERN Stack
+Developed using the MERN Stack
 
-Technologies:
-
-- MongoDB
-- Express.js
-- React.js
-- Node.js
+**MongoDB + Express.js + React.js + Node.js**
 
 ---
 
-# 🤝 Contribution
+# 🤝 Contributing
 
 Contributions are welcome.
 
 Steps:
 
-1. Fork the repository
-
-2. Create a branch
-
 ```bash
+git clone repository-url
+
 git checkout -b feature-name
-```
 
-3. Commit changes
-
-```bash
 git commit -m "Added new feature"
-```
 
-4. Push changes
-
-```bash
 git push origin feature-name
 ```
 
-5. Create Pull Request
+Create a Pull Request.
 
 ---
 
 # 📜 License
 
-This project is licensed under the MIT License.
+MIT License
 
 ---
 
 # ⭐ Support
 
-If you like this project, consider giving it a star on GitHub.
+If you like Velora, consider giving this repository a ⭐.
