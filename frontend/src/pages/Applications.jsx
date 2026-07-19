@@ -4,14 +4,12 @@ import "./Applications.css";
 
 function Applications() {
   const [applications, setApplications] = useState([]);
-  const [loading, setLoading] = useState(true);
   useEffect(() => {
     fetchApplications();
   }, []);
 
   const fetchApplications = async () => {
     try {
-      setLoading(true);
       
       const token =
         localStorage.getItem("token");
@@ -28,8 +26,6 @@ function Applications() {
       setApplications(res.data);
     } catch (err) {
       console.log(err);
-    } finally {
-      setLoading(false);
     }
   };
 

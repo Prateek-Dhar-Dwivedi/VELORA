@@ -37,7 +37,7 @@ console.log(err);
 
 getProfile();
 
-},[]);
+},[token]);
 
 
 const saveSkills=async()=>{

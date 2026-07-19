@@ -3,21 +3,18 @@ import axios from "axios";
 import JobCard from "../components/JobCard";
 import "./Jobs.css";
 import { toast } from "react-toastify";
-import Loader from "../components/Loader";
 
 function Jobs() {
   const [jobs, setJobs] = useState([]);
   const [search, setSearch] = useState("");
   const [verifiedOnly, setVerifiedOnly] = useState(false);
   const [minTrustScore, setMinTrustScore] = useState(0);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchJobs();
   }, []);
 
   const fetchJobs = () => {
-    setLoading(true);
 
     axios
       .get(`${process.env.REACT_APP_API_URL}/api/jobs`)
