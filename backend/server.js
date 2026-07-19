@@ -20,7 +20,7 @@ cron.schedule("0 */6 * * *", async () => {
 const app = express();
 
 app.use(cors({
-  origin:"https://your-vercel-url.vercel.app",
+  origin:"https://velora-ten-puce.vercel.app",
   credentials:true
 }));
 //Change the origin to your frontend URL in production
