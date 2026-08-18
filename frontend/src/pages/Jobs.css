@@ -1,10 +1,15 @@
+.jobs-page {
+  padding: 40px 8%;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+}
+
 .recommend-header h1 {
   font-size: 3rem;
-
   background: linear-gradient(90deg,
       #3b82f6,
       #8b5cf6);
-
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -21,6 +26,8 @@
 
 .jobs-header p {
   color: var(--secondary);
+  font-size: 1.1rem;
+  margin-top: 10px;
 }
 
 .search-section {
@@ -36,28 +43,41 @@
   max-width: 100%;
   padding: 15px;
   border-radius: 14px;
-  border: 1px solid #d1d5db;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
   font-size: 1rem;
   outline: none;
+  box-shadow: var(--shadow);
+}
+
+.search-input::placeholder {
+  color: var(--secondary);
 }
 
 .search-input:focus {
-  border-color: #2563eb;
+  border-color: var(--primary);
 }
 
 .sync-btn {
-  background: #2563eb;
+  background: var(--primary);
   color: white;
   border: none;
   padding: 15px 22px;
   border-radius: 14px;
   cursor: pointer;
   font-weight: 600;
+  transition: .3s;
+}
+
+.sync-btn:hover {
+  background: var(--primary-hover);
 }
 
 .filters {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 25px;
   margin-bottom: 40px;
   flex-wrap: wrap;
@@ -65,12 +85,21 @@
 
 .filters label {
   font-weight: 600;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
 }
 
 .filters select {
-  padding: 10px;
+  padding: 10px 14px;
   border-radius: 10px;
-  border: 1px solid #d1d5db;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  outline: none;
+  cursor: pointer;
 }
 
 .jobs-grid {

@@ -4,6 +4,8 @@ import {
   FaShieldAlt,
   FaRobot,
   FaFileAlt,
+  FaRocket,
+  FaBullseye,
 } from "react-icons/fa";
 
 function Hero() {
@@ -11,7 +13,7 @@ function Hero() {
     <section className="hero">
       <div className="hero-left">
         <span className="hero-badge">
-          🚀 AI-Powered Career Platform
+          <FaRocket style={{ marginRight: "6px" }} /> AI-Powered Career Platform
         </span>
         <h1>
           Find Trusted Jobs.
@@ -46,7 +48,7 @@ function Hero() {
 
       <div className="hero-right">
         <div className="dashboard-card">
-          <h3>🎯 AI Match Score</h3>
+          <h3><FaBullseye style={{ marginRight: "6px" }} /> AI Match Score</h3>
           <h1>94%</h1>
           <p>React Developer</p>
         </div>

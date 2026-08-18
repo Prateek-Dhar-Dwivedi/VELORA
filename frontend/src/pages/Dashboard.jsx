@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { FaChartPie, FaBuilding } from "react-icons/fa";
+import { API_URL } from "../api";
 import "./Dashboard.css";
 
 import {
@@ -45,14 +47,14 @@ function Dashboard() {
       try {
         const statsRes =
           await axios.get(
-            `${process.env.REACT_APP_API_URL}/api/jobs/stats`
+            `${API_URL}/api/jobs/stats`
           );
 
         setStats(statsRes.data);
 
         const companyRes =
           await axios.get(
-            `${process.env.REACT_APP_API_URL}/api/jobs/top-companies`
+            `${API_URL}/api/jobs/top-companies`
           );
 
         console.log(
@@ -139,7 +141,7 @@ function Dashboard() {
       <div className="chart-grid">
 
         <div className="chart-card">
-          <h2>🥧 Job Distribution</h2>
+          <h2><FaChartPie style={{ marginRight: "8px" }} />Job Distribution</h2>
 
           <div className="chart-container">
             <Pie data={pieData} />
@@ -147,7 +149,7 @@ function Dashboard() {
         </div>
 
         <div className="chart-card">
-          <h2>🏢 Top Hiring Companies</h2>
+          <h2><FaBuilding style={{ marginRight: "8px" }} />Top Hiring Companies</h2>
 
           <div className="chart-container">
             <Bar

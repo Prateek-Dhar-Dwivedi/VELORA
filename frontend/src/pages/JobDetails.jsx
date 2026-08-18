@@ -1,6 +1,15 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import {
+  FaBuilding,
+  FaMapMarkerAlt,
+  FaMoneyBillWave,
+  FaCheckCircle,
+  FaExclamationTriangle,
+  FaRocket,
+} from "react-icons/fa";
+import { API_URL } from "../api";
 import "./JobDetails.css";
 import Loader from "../components/Loader";
 
@@ -15,7 +24,7 @@ function JobDetails() {
       async () => {
         const res =
           await axios.get(
-            `${process.env.REACT_APP_API_URL}/api/jobs/${id}`
+            `${API_URL}/api/jobs/${id}`
           );
 
         setJob(res.data);
@@ -37,11 +46,11 @@ function JobDetails() {
           <h1>{job.title}</h1>
 
           <h3>
-            🏢 {job.company}
+            <FaBuilding style={{ marginRight: "6px" }} />{job.company}
           </h3>
 
           <p>
-            📍 {job.location}
+            <FaMapMarkerAlt style={{ marginRight: "6px" }} />{job.location}
           </p>
         </div>
 
@@ -63,7 +72,7 @@ function JobDetails() {
           <h4>Salary</h4>
 
           <p>
-            💰 {job.salary}
+            <FaMoneyBillWave style={{ marginRight: "6px" }} />{job.salary}
           </p>
         </div>
 
@@ -71,9 +80,15 @@ function JobDetails() {
           <h4>Status</h4>
 
           <p>
-            {job.isVerified
-              ? "✅ Verified"
-              : "⚠️ Unverified"}
+            {job.isVerified ? (
+              <span style={{ color: "#16a34a" }}>
+                <FaCheckCircle style={{ marginRight: "6px" }} />Verified
+              </span>
+            ) : (
+              <span style={{ color: "#f59e0b" }}>
+                <FaExclamationTriangle style={{ marginRight: "6px" }} />Unverified
+              </span>
+            )}
           </p>
         </div>
 
@@ -100,7 +115,7 @@ function JobDetails() {
         rel="noreferrer"
       >
         <button className="apply-btn">
-          🚀 Apply Now
+          <FaRocket style={{ marginRight: "8px" }} />Apply Now
         </button>
       </a>
 

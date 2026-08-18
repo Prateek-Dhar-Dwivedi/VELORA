@@ -1,5 +1,15 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import {
+  FaRobot,
+  FaBuilding,
+  FaBullseye,
+  FaMapMarkerAlt,
+  FaBriefcase,
+  FaMoneyBillWave,
+  FaShieldAlt,
+} from "react-icons/fa";
+import { API_URL } from "../api";
 import "./Recommendations.css";
 
 function Recommendations() {
@@ -16,7 +26,7 @@ function Recommendations() {
       const token = localStorage.getItem("token");
 
       const res = await axios.get(
-        `${process.env.REACT_APP_API_URL}/api/user/recommended-jobs`,
+        `${API_URL}/api/user/recommended-jobs`,
         {
           headers: {
             authorization: token
@@ -36,7 +46,7 @@ function Recommendations() {
     <div className="recommend-page">
 
       <div className="recommend-header">
-        <h1>🤖 AI Job Recommendations</h1>
+        <h1><FaRobot style={{ marginRight: "8px" }} />AI Job Recommendations</h1>
         <p>Jobs matched specially for your skills and profile</p>
       </div>
 
@@ -61,11 +71,11 @@ function Recommendations() {
 
                   <div>
                     <h2>{job.title}</h2>
-                    <p className="company">🏢 {job.company}</p>
+                    <p className="company"><FaBuilding style={{ marginRight: "6px" }} />{job.company}</p>
                   </div>
 
                   <div className="match-box">
-                    <p>🎯 Match Score: {job.matchScore ?? 0}%</p>
+                    <p><FaBullseye style={{ marginRight: "6px" }} />Match Score: {job.matchScore ?? 0}%</p>
 
                     <div className="match-bar">
                       <div
@@ -83,13 +93,13 @@ function Recommendations() {
 
                 <div className="job-info">
 
-                  <p>📍 {job.location || "Remote"}</p>
+                  <p><FaMapMarkerAlt style={{ marginRight: "6px" }} />{job.location || "Remote"}</p>
 
-                  <p>💼 {job.employmentType || "Full Time"}</p>
+                  <p><FaBriefcase style={{ marginRight: "6px" }} />{job.employmentType || "Full Time"}</p>
 
-                  <p>💰 {job.salary || "Not Specified"}</p>
+                  <p><FaMoneyBillWave style={{ marginRight: "6px" }} />{job.salary || "Not Specified"}</p>
 
-                  <p>🛡 Trust Score: {job.trustScore || 0}/100</p>
+                  <p><FaShieldAlt style={{ marginRight: "6px" }} />Trust Score: {job.trustScore || 0}/100</p>
 
                 </div>
 

@@ -1,209 +1,277 @@
-import {useEffect,useState} from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
+import {
+  FaUser,
+  FaRobot,
+  FaFileAlt,
+  FaEnvelope,
+  FaCamera,
+  FaSpinner,
+} from "react-icons/fa";
+import { API_URL } from "../api";
 import "./Profile.css";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 import Loader from "../components/Loader";
 
-function Profile(){
+function Profile() {
+
+  const [user, setUser] = useState(null);
+  const [skills, setSkills] = useState("");
+  const [uploadingAvatar, setUploadingAvatar] = useState(false);
 
-const [user,setUser]=useState(null);
-const [skills,setSkills]=useState("");
+  const token = localStorage.getItem("token");
 
-const token=localStorage.getItem("token");
+  useEffect(() => {
 
-useEffect(()=>{
+    const getProfile = async () => {
 
-const getProfile=async()=>{
+      try {
+
+        const res = await axios.get(
+          `${API_URL}/api/user/profile`,
+          {
+            headers: {
+              authorization: token
+            }
+          }
+        );
+
+        setUser(res.data);
+        setSkills(res.data.skills || "");
 
-try{
+      } catch (err) {
+        console.log(err);
+      }
 
-const res=await axios.get(
-`${process.env.REACT_APP_API_URL}/api/user/profile`,
-{
-headers:{
-authorization:token
-}
-}
-);
+    };
 
-setUser(res.data);
-setSkills(res.data.skills||"");
+    getProfile();
 
-}catch(err){
-console.log(err);
-}
+  }, [token]);
 
-};
 
-getProfile();
+  const handleAvatarUpload = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
 
-},[token]);
+    if (!file.type.startsWith("image/")) {
+      return toast.error("Please select a valid image file (JPG, PNG, WEBP)");
+    }
 
+    try {
+      setUploadingAvatar(true);
+      const formData = new FormData();
+      formData.append("avatar", file);
 
-const saveSkills=async()=>{
+      const res = await axios.post(
+        `${API_URL}/api/upload/avatar`,
+        formData,
+        {
+          headers: {
+            authorization: token,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      setUser((prev) => ({
+        ...prev,
+        avatar: res.data.avatar,
+      }));
+      toast.success("Profile photo updated!");
+    } catch (err) {
+      console.error(err);
+      toast.error(
+        err.response?.data?.error || "Failed to upload profile picture"
+      );
+    } finally {
+      setUploadingAvatar(false);
+    }
+  };
 
-try{
 
-await axios.put(
-`${process.env.REACT_APP_API_URL}/api/user/skills`,
-{
-skills
-},
-{
-headers:{
-authorization:token
-}
-}
-);
+  const saveSkills = async () => {
 
-toast.success("Skills Updated");
-setSkills("");
+    try {
 
-}catch(err){
-toast.error("Update Failed");
-}
+      await axios.put(
+        `${API_URL}/api/user/skills`,
+        {
+          skills
+        },
+        {
+          headers: {
+            authorization: token
+          }
+        }
+      );
 
-};
+      toast.success("Skills Updated");
+      setSkills("");
 
+    } catch (err) {
+      toast.error("Update Failed");
+    }
 
-const sendAlert=async()=>{
+  };
 
-try{
 
-await axios.post(
-`${process.env.REACT_APP_API_URL}/api/user/job-alert`,
-{},
-{
-headers:{
-authorization:token
-}
-}
-);
+  const sendAlert = async () => {
 
-toast.success("Job Alert Sent");
+    try {
 
-}catch(err){
-toast.error("Alert Failed");
-}
+      await axios.post(
+        `${API_URL}/api/user/job-alert`,
+        {},
+        {
+          headers: {
+            authorization: token
+          }
+        }
+      );
 
-};
+      toast.success("Job Alert Sent");
 
+    } catch (err) {
+      toast.error("Alert Failed");
+    }
 
-if(!user){
-return <Loader/>;
-}
+  };
 
 
-return(
+  if (!user) {
+    return <Loader />;
+  }
 
-<div className="profile-container">
 
-<div className="profile-left">
+  return (
 
-<div className="profile-avatar">
-👤
-</div>
+    <div className="profile-container">
 
-<h1>{user.name}</h1>
+      <div className="profile-left">
 
-<p>{user.email}</p>
+        <div className="avatar-wrapper">
+          <div className="profile-avatar">
+            {user.avatar ? (
+              <img src={user.avatar} alt={user.name || "Profile DP"} />
+            ) : (
+              <FaUser />
+            )}
+            {uploadingAvatar && (
+              <div className="avatar-loading-overlay">
+                <FaSpinner className="spin-icon" />
+              </div>
+            )}
+          </div>
 
-<div className="ai-badge">
-🤖 AI Career Profile
-</div>
+          <label className="avatar-edit-btn" title="Change Profile Picture">
+            <FaCamera />
+            <input
+              type="file"
+              accept="image/*"
+              style={{ display: "none" }}
+              onChange={handleAvatarUpload}
+              disabled={uploadingAvatar}
+            />
+          </label>
+        </div>
 
+        <h1>{user.name}</h1>
 
-<div className="mini-stats">
+        <p>{user.email}</p>
 
-<div>
-<h2>{user.savedJobs?.length||0}</h2>
-<p>Saved</p>
-</div>
 
-<div>
-<h2>{user.applications?.length||0}</h2>
-<p>Applied</p>
-</div>
+        <div className="mini-stats">
 
-</div>
+          <div>
+            <h2>{user.savedJobs?.length || 0}</h2>
+            <p>Saved</p>
+          </div>
 
-</div>
+          <div>
+            <h2>{user.applications?.length || 0}</h2>
+            <p>Applied</p>
+          </div>
 
+        </div>
 
-<div className="profile-right">
+      </div>
 
 
-<div className="glass-card">
+      <div className="profile-right">
 
-<h2>📄 Resume</h2>
 
-{
-user.resumeUrl?
+        <div className="glass-card">
 
-<a
-href={user.resumeUrl}
-target="_blank"
-rel="noreferrer"
->
-View Resume →
-</a>
+          <h2><FaFileAlt style={{ marginRight: "8px" }} />Resume</h2>
 
-:
+          {
+            user.resumeUrl ?
 
-<p>No Resume Uploaded</p>
+              <a
+                href={`${API_URL}/api/upload/resume/view?token=${token}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                View Resume →
+              </a>
 
-}
+              :
 
-</div>
+              <p>No Resume Uploaded</p>
 
+          }
 
-<div className="glass-card">
+        </div>
 
-<h2>🚀 Skills Intelligence</h2>
 
+        <div className="glass-card">
 
-<div className="skill-tags">
+          <h2>Skills Intelligence</h2>
 
-{
-skills.split(",").filter(Boolean).map((skill,index)=>(
 
-<span key={index}>
-{skill}
-</span>
+          <div className="skill-tags">
 
-))
-}
+            {
+              skills.split(",").filter(Boolean).map((skill, index) => (
 
-</div>
+                <span key={index}>
+                  {skill}
+                </span>
 
+              ))
+            }
 
-<textarea
-placeholder="Add skills: React, Node, AI..."
-value={skills}
-onChange={(e)=>setSkills(e.target.value)}
-/>
+          </div>
 
 
-<div className="actions">
+          <textarea
+            placeholder="Add skills: React, Node, AI..."
+            value={skills}
+            onChange={(e) => setSkills(e.target.value)}
+          />
 
-<button onClick={saveSkills}>
-Save Skills
-</button>
 
-<button onClick={sendAlert}>
-📧 Job Alert
-</button>
+          <div className="actions">
 
-</div>
+            <button onClick={saveSkills}>
+              Save Skills
+            </button>
 
-</div>
+            <button onClick={sendAlert}>
+              <FaEnvelope style={{ marginRight: "6px" }} />Job Alert
+            </button>
 
+          </div>
 
-</div>
+        </div>
 
-</div>
 
-);
+      </div>
+
+    </div>
+
+  );
 
 }
 

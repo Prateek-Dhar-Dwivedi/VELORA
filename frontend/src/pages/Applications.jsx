@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { FaFileAlt, FaBuilding } from "react-icons/fa";
+import { API_URL } from "../api";
 import "./Applications.css";
 
 function Applications() {
@@ -15,7 +17,7 @@ function Applications() {
         localStorage.getItem("token");
 
       const res = await axios.get(
-        `${process.env.REACT_APP_API_URL}/api/user/applications`,
+        `${API_URL}/api/user/applications`,
         {
           headers: {
             authorization: token,
@@ -38,7 +40,7 @@ function Applications() {
         localStorage.getItem("token");
 
       await axios.put(
-        `${process.env.REACT_APP_API_URL}/api/user/application/${applicationId}`,
+        `${API_URL}/api/user/application/${applicationId}`,
         { status },
         {
           headers: {
@@ -56,7 +58,7 @@ function Applications() {
   return (
     <div className="applications-page">
       <div className="applications-header">
-        <h1>📝 My Applications</h1>
+        <h1><FaFileAlt style={{ marginRight: "8px" }} />My Applications</h1>
         <p>
           Track your job application journey
         </p>
@@ -81,7 +83,7 @@ function Applications() {
               </h3>
 
               <p>
-                🏢{" "}
+                <FaBuilding style={{ marginRight: "6px" }} />
                 {app.job?.company ||
                   "Company"}
               </p>

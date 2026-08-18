@@ -17,11 +17,21 @@ cron.schedule("0 */6 * * *", async () => {
   // call sync function here
 });
 
-const app = express();
+const allowedOrigins = [
+  "https://velora-ten-puce.vercel.app",
+  "http://localhost:3000",
+  "http://localhost:5173",
+];
 
 app.use(cors({
-  origin:"https://velora-ten-puce.vercel.app",
-  credentials:true
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin) || origin.endsWith(".vercel.app")) {
+      return callback(null, true);
+    }
+    return callback(null, true);
+  },
+  credentials: true
 }));
 //Change the origin to your frontend URL in production
 app.use(express.json());
@@ -34,16 +44,16 @@ app.use("/api/upload", uploadRoutes);
 app.use("/api/ai", aiRoutes);
 app.use("/api/auth", authRoutes);
 
-connectDB();
-
-
-
 app.get("/", (req, res) => {
   res.json({ message: "JobShield API Running" });
 });
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-  console.log(`Server running on ${PORT}`);
+connectDB().then(() => {
+  app.listen(PORT, () => {
+    console.log(`Server running on ${PORT}`);
+  });
+}).catch((err) => {
+  console.error("Failed to connect to MongoDB:", err);
 });

@@ -111,24 +111,3 @@
         padding: 20px;
     }
 }
-
-.resume-card h1 {
-    color: #111827 !important;
-    -webkit-text-fill-color: #111827 !important;
-}
-
-.upload-content h3 {
-    display: block !important;
-    color: #111827 !important;
-    -webkit-text-fill-color: #111827 !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-}
-
-.upload-content p {
-    display: block !important;
-    color: #64748b !important;
-    -webkit-text-fill-color: #64748b !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-}

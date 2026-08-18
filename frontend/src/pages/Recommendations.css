@@ -1,7 +1,8 @@
 .recommend-page{
 min-height:100vh;
 padding:40px;
-background:linear-gradient(135deg,#f8fafc,#eef2ff);
+background:var(--bg);
+color:var(--text);
 }
 
 .recommend-header{
@@ -20,7 +21,7 @@ color:transparent;
 }
 
 .recommend-header p{
-color:#64748b;
+color:var(--secondary);
 font-size:18px;
 }
 
@@ -31,12 +32,12 @@ gap:25px;
 }
 
 .job-card{
-background:white;
+background:var(--card);
 padding:25px;
 border-radius:22px;
-box-shadow:0 10px 30px rgba(0,0,0,.08);
+box-shadow:var(--shadow);
 transition:.3s;
-border:1px solid #e5e7eb;
+border:1px solid var(--border);
 }
 
 .job-card:hover{
@@ -53,11 +54,11 @@ align-items:center;
 .card-top h2{
 font-size:22px;
 margin-bottom:8px;
-color:#111827;
+color:var(--text);
 }
 
 .company{
-color:#64748b;
+color:var(--secondary);
 }
 
 .match-box{
@@ -66,14 +67,14 @@ margin-top:20px;
 
 .match-box p{
 font-weight:600;
-color:#334155;
+color:var(--text);
 margin-bottom:8px;
 }
 
 .match-bar{
 width:100%;
 height:12px;
-background:#e2e8f0;
+background:var(--border);
 border-radius:20px;
 overflow:hidden;
 }
@@ -87,7 +88,7 @@ transition:.5s ease;
 
 .job-info{
 margin-top:20px;
-color:#475569;
+color:var(--secondary);
 }
 
 .job-info p{
@@ -116,10 +117,17 @@ transform:scale(1.02);
 .empty-box{
 grid-column:1/-1;
 text-align:center;
-background:white;
+background:var(--card);
+color:var(--text);
+border:1px solid var(--border);
 padding:50px;
 border-radius:20px;
-box-shadow:0 10px 25px rgba(0,0,0,.08);
+box-shadow:var(--shadow);
+}
+
+.empty-box p{
+color:var(--secondary);
+margin-top:10px;
 }
 
 @media(max-width:600px){

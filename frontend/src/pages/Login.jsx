@@ -2,6 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
+import { FaSignInAlt } from "react-icons/fa";
+import { API_URL } from "../api";
 import "./Auth.css";
 import { GoogleLogin } from "@react-oauth/google";
 
@@ -23,7 +25,7 @@ function Login() {
 
     try {
       const res = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/auth/login`,
+        `${API_URL}/api/auth/login`,
         {
           email,
           password,
@@ -57,7 +59,7 @@ function Login() {
     <div className="auth-page">
       <div className="auth-card">
 
-        <h1>Welcome Back 👋</h1>
+        <h1>Welcome Back <FaSignInAlt style={{ marginLeft: "8px", fontSize: "0.85em" }} /></h1>
 
         <p>
           Login to continue your
@@ -107,7 +109,7 @@ function Login() {
             ) => {
               try {
                 const res = await axios.post(
-                  `${process.env.REACT_APP_API_URL}/api/auth/google`,
+                  `${API_URL}/api/auth/google`,
                   {
                     credential:
                       credentialResponse.credential,

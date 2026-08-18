@@ -2,6 +2,14 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import {
+  FaBuilding,
+  FaMapMarkerAlt,
+  FaMoneyBillWave,
+  FaShieldAlt,
+  FaBullseye,
+} from "react-icons/fa";
+import { API_URL } from "../api";
 import "./JobCard.css";
 
 function JobCard({ job }) {
@@ -18,7 +26,7 @@ function JobCard({ job }) {
           if (!token) return;
 
           const res = await axios.get(
-            `${process.env.REACT_APP_API_URL}/api/ai/match/${job._id}`,
+            `${API_URL}/api/ai/match/${job._id}`,
             {
               headers: {
                 authorization: token,
@@ -47,7 +55,7 @@ function JobCard({ job }) {
         localStorage.getItem("token");
 
       await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/user/apply/${job._id}`,
+        `${API_URL}/api/user/apply/${job._id}`,
         {},
         {
           headers: {
@@ -72,7 +80,7 @@ function JobCard({ job }) {
         localStorage.getItem("token");
 
       await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/user/save/${job._id}`,
+        `${API_URL}/api/user/save/${job._id}`,
         {},
         {
           headers: {
@@ -92,7 +100,7 @@ function JobCard({ job }) {
   const reportJob = async () => {
     try {
       await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/jobs/report/${job._id}`
+        `${API_URL}/api/jobs/report/${job._id}`
       );
 
       toast.success(
@@ -107,7 +115,7 @@ function JobCard({ job }) {
     <div className="job-card">
 
       <div className="job-header">
-        <h2 style={{color:"black"}}>{job.title}</h2>
+        <h2>{job.title}</h2>
 
         <span
           className={
@@ -123,7 +131,7 @@ function JobCard({ job }) {
       </div>
 
       <p>
-        <strong>🏢 Company:</strong>{" "}
+        <strong><FaBuilding style={{ marginRight: "6px" }} />Company:</strong>{" "}
         <Link
           to={`/company/${job.company}`}
         >
@@ -132,12 +140,12 @@ function JobCard({ job }) {
       </p>
 
       <p>
-        <strong>📍 Location:</strong>{" "}
+        <strong><FaMapMarkerAlt style={{ marginRight: "6px" }} />Location:</strong>{" "}
         {job.location}
       </p>
 
       <p>
-        <strong>💰 Salary:</strong>{" "}
+        <strong><FaMoneyBillWave style={{ marginRight: "6px" }} />Salary:</strong>{" "}
         {job.salary}
       </p>
 
@@ -149,14 +157,14 @@ function JobCard({ job }) {
           ),
         }}
       >
-        🛡 Trust Score:
+        <FaShieldAlt style={{ marginRight: "6px" }} />Trust Score:
         {" "}
         {job.trustScore}/100
       </p>
 
       {matchScore !== null && (
         <p className="match-score">
-          🎯 Match Score:
+          <FaBullseye style={{ marginRight: "6px" }} />Match Score:
           {" "}
           {matchScore}%
         </p>

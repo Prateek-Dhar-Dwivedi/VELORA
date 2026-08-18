@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import {
   FaBriefcase,
@@ -9,7 +10,8 @@ import {
   FaSun,
   FaSignOutAlt
 } from "react-icons/fa";
-
+import { API_URL } from "../api";
+import axios from "axios";
 import logo from "../velora.png";
 import "./Navbar.css";
 
@@ -17,6 +19,21 @@ function Navbar({ darkMode, setDarkMode }) {
 
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
+  const [avatar, setAvatar] = useState(null);
+
+  useEffect(() => {
+    if (!token) return;
+    axios
+      .get(`${API_URL}/api/user/profile`, {
+        headers: { authorization: token },
+      })
+      .then((res) => {
+        if (res.data?.avatar) {
+          setAvatar(res.data.avatar);
+        }
+      })
+      .catch((err) => console.log(err));
+  }, [token]);
 
   const logout = () => {
     localStorage.removeItem("token");
@@ -78,9 +95,14 @@ function Navbar({ darkMode, setDarkMode }) {
 
         <NavLink
           to="/profile"
-          className={({ isActive }) => isActive ? "active-icon" : ""}
+          className={({ isActive }) => isActive ? "active-icon nav-profile-link" : "nav-profile-link"}
+          title="Profile"
         >
-          <FaUserCircle />
+          {avatar ? (
+            <img src={avatar} alt="User DP" className="nav-avatar-img" />
+          ) : (
+            <FaUserCircle />
+          )}
         </NavLink>
 
 

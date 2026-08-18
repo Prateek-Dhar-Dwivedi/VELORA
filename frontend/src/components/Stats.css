@@ -5,15 +5,16 @@
     repeat(auto-fit, minmax(220px, 1fr));
   gap: 25px;
 
-  background: white;
+  background: var(--bg);
 }
 
 .stat-card {
   text-align: center;
-  background: #f8fafc;
+  background: var(--card);
+  border: 1px solid var(--border);
   padding: 40px;
   border-radius: 24px;
-
+  box-shadow: var(--shadow);
   transition: 0.3s;
 }
 
@@ -23,10 +24,10 @@
 
 .stat-card h2 {
   font-size: 3rem;
-  color: #2563eb;
+  color: var(--primary);
 }
 
 .stat-card p {
-  color: #64748b;
+  color: var(--secondary);
   margin-top: 10px;
 }

@@ -2,6 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
+import { FaUserPlus } from "react-icons/fa";
+import { API_URL } from "../api";
 import "./Auth.css";
 
 function Register() {
@@ -17,7 +19,7 @@ function Register() {
   const registerUser = async () => {
     try {
       await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/auth/register`,
+        `${API_URL}/api/auth/register`,
         {
           name,
           email,
@@ -59,7 +61,7 @@ function Register() {
 
       <div className="auth-card">
 
-        <h1>Create Account 🚀</h1>
+        <h1>Create Account <FaUserPlus style={{ marginLeft: "8px", fontSize: "0.85em" }} /></h1>
 
         <p>
           Powered by AI. Driven by Your Ambition.

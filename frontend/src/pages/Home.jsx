@@ -10,6 +10,7 @@ import {
   FaShieldAlt,
   FaRobot,
   FaFileAlt,
+  FaBullseye,
 } from "react-icons/fa";
 
 function Home() {
@@ -57,7 +58,7 @@ function Home() {
 
         <div className="hero-right">
           <div className="dashboard-card">
-            <h3>🎯 AI Match Score</h3>
+            <h3><FaBullseye style={{ marginRight: "6px" }} /> AI Match Score</h3>
             <h1>94%</h1>
             <p>React Developer</p>
           </div>

@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { FaRocket, FaSyncAlt } from "react-icons/fa";
+import { API_URL } from "../api";
 import JobCard from "../components/JobCard";
 import "./Jobs.css";
 import { toast } from "react-toastify";
@@ -17,7 +19,7 @@ function Jobs() {
   const fetchJobs = () => {
 
     axios
-      .get(`${process.env.REACT_APP_API_URL}/api/jobs`)
+      .get(`${API_URL}/api/jobs`)
       .then((res) => {
         if (Array.isArray(res.data)) {
           setJobs(res.data);
@@ -35,7 +37,7 @@ function Jobs() {
   const syncJobs = async () => {
     try {
       const res = await axios.get(
-        `${process.env.REACT_APP_API_URL}/api/jobs/sync`
+        `${API_URL}/api/jobs/sync`
       );
 
       toast.success(
@@ -52,7 +54,7 @@ function Jobs() {
     <div className="jobs-page">
 
       <div className="jobs-header">
-        <h1>🚀 Explore Opportunities</h1>
+        <h1>Explore Opportunities</h1>
 
         <p>
           Discover verified jobs,
@@ -76,7 +78,7 @@ function Jobs() {
           className="sync-btn"
           onClick={syncJobs}
         >
-          🔄 Sync Jobs
+          <FaSyncAlt style={{ marginRight: "6px" }} />Sync Jobs
         </button>
       </div>
 

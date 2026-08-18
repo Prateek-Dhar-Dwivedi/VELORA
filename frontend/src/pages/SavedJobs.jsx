@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { FaHeart, FaBuilding, FaMapMarkerAlt } from "react-icons/fa";
+import { API_URL } from "../api";
 import "./SavedJobs.css";
 
 function SavedJobs() {
@@ -17,7 +19,7 @@ function SavedJobs() {
         );
 
       await axios.delete(
-        `${process.env.REACT_APP_API_URL}/api/user/save/${jobId}`,
+        `${API_URL}/api/user/save/${jobId}`,
         {
           headers: {
             authorization:
@@ -56,7 +58,7 @@ function SavedJobs() {
 
           const res =
             await axios.get(
-              `${process.env.REACT_APP_API_URL}/api/user/saved`,
+              `${API_URL}/api/user/saved`,
               {
                 headers: {
                   authorization:
@@ -78,7 +80,7 @@ function SavedJobs() {
     <div className="saved-page">
 
       <h1>
-        ❤️ Saved Jobs
+        <FaHeart style={{ marginRight: "8px", color: "#ef4444" }} />Saved Jobs
       </h1>
 
       <p>
@@ -104,11 +106,11 @@ function SavedJobs() {
               </h3>
 
               <p>
-                🏢 {job.company}
+                <FaBuilding style={{ marginRight: "6px" }} />{job.company}
               </p>
 
               <p>
-                📍 {job.location}
+                <FaMapMarkerAlt style={{ marginRight: "6px" }} />{job.location}
               </p>
 
               <button

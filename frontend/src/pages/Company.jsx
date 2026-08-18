@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { FaBuilding } from "react-icons/fa";
+import { API_URL } from "../api";
 import JobCard from "../components/JobCard";
 import "./Company.css";
 
@@ -16,7 +18,7 @@ function Company() {
         try {
           const res =
             await axios.get(
-              `${process.env.REACT_APP_API_URL}/api/jobs/company/${name}`
+              `${API_URL}/api/jobs/company/${name}`
             );
 
           setJobs(res.data);
@@ -34,7 +36,7 @@ function Company() {
       <div className="company-banner">
 
         <div className="company-logo">
-          🏢
+          <FaBuilding />
         </div>
 
         <div>
