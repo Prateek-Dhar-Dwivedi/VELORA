@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { FaRocket, FaSyncAlt } from "react-icons/fa";
+import { FaSyncAlt } from "react-icons/fa";
 import { API_URL } from "../api";
 import JobCard from "../components/JobCard";
 import "./Jobs.css";

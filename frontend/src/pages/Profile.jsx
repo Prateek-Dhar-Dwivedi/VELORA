@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import {
   FaUser,
-  FaRobot,
   FaFileAlt,
   FaEnvelope,
   FaCamera,

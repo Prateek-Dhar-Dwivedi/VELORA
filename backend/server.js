@@ -17,6 +17,8 @@ cron.schedule("0 */6 * * *", async () => {
   // call sync function here
 });
 
+const app = express();
+
 const allowedOrigins = [
   "https://velora-ten-puce.vercel.app",
   "http://localhost:3000",
